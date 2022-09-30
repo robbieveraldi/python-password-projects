@@ -9,21 +9,19 @@ from cryptography.fernet import Fernet
 
 def load_key():
     file = open("key.key", "rb")
-    # '''reading bytes'''
+    # rb = reading bytes
     key = file.read()
     file.close()
     return key
 
 
-# master_pwd = input("What is the master password? ")
 key = load_key()
-# + master_pwd.encode()
 fer = Fernet(key)
 
 
 def view():
     with open('passwords.txt', 'r') as f:
-        # '''r = read'''
+        # r = read
         for line in f.readlines():
             data = (line.rstrip())
             user, passw = data.split("|")
@@ -36,7 +34,7 @@ def add():
     pwd = input('Password: ')
 
     with open('passwords.txt', 'a') as f:
-        # '''a = append, w = write'''
+        # a = append, w = write
         f.write(name + "|" + (fer.encrypt(pwd.encode()).decode() + "\n"))
 
 
